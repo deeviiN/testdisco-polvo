@@ -1,0 +1,1 @@
+ALTER TABLE public.bookings ADD COLUMN resources text[] DEFAULT '{}'::text[];

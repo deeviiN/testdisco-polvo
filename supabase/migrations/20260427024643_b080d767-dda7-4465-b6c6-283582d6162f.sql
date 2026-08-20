@@ -1,0 +1,2 @@
+REVOKE EXECUTE ON FUNCTION public.log_client_error(text, text, text, text, text, text) FROM anon, PUBLIC;
+GRANT EXECUTE ON FUNCTION public.log_client_error(text, text, text, text, text, text) TO authenticated;

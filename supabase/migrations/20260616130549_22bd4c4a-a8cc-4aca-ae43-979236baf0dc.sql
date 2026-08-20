@@ -1,0 +1,1 @@
+ALTER TABLE public.panel_settings ADD COLUMN IF NOT EXISTS tv_brand text;

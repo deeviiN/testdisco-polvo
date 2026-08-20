@@ -1,0 +1,19 @@
+project_id = "bypnkfypgxmpmvvkpyts"
+
+[functions.webhook-mercadopago]
+verify_jwt = false
+[functions.mp-test-pix]
+verify_jwt = false
+[functions.mp-check-payment]
+verify_jwt = false
+[functions.get-vapid-public-key]
+verify_jwt = false
+[functions.verify-access-password]
+verify_jwt = false
+[functions.painel-tv-legacy]
+verify_jwt = false
+
+[cron.security-linter-job]
+schedule = "0 3 * * *"
+endpoint = "/security-linter-job"
+

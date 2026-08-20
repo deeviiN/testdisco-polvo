@@ -1,0 +1,238 @@
+/* =========================================================================
+   Premium SaaS button polish — visual-only layer.
+   Não altera tamanho, padding, posição, fonte ou layout de nenhum botão.
+   Apenas refina background, brilho, borda interna, sombra e hover.
+   Inspiração: Stripe / Linear / Vercel / Apple UI.
+   ========================================================================= */
+
+:root {
+  --btn-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --btn-stroke:      inset 0 0 0 1px hsl(0 0% 100% / 0.10);
+  --btn-highlight:   inset 0 1px 0 hsl(0 0% 100% / 0.18);
+  --btn-inner-shade: inset 0 -1px 0 hsl(0 0% 0% / 0.20);
+  --btn-shadow:      0 1px 2px hsl(220 40% 8% / 0.18), 0 6px 16px -8px hsl(220 40% 8% / 0.28);
+  --btn-shadow-hov:  0 2px 4px hsl(220 40% 8% / 0.22), 0 14px 30px -10px hsl(220 40% 8% / 0.38);
+
+  --btn-grad-primary:        linear-gradient(180deg, hsl(var(--primary) / 0.98), hsl(var(--primary) / 0.86));
+  --btn-grad-primary-hover:  linear-gradient(180deg, hsl(var(--primary)), hsl(var(--primary) / 0.92));
+
+  --btn-grad-secondary:       linear-gradient(180deg, hsl(var(--secondary)), hsl(var(--secondary) / 0.85));
+  --btn-grad-secondary-hover: linear-gradient(180deg, hsl(var(--secondary)), hsl(var(--secondary) / 0.95));
+
+  --btn-grad-destructive:       linear-gradient(180deg, hsl(var(--destructive) / 0.98), hsl(var(--destructive) / 0.84));
+  --btn-grad-destructive-hover: linear-gradient(180deg, hsl(var(--destructive)), hsl(var(--destructive) / 0.92));
+
+  --btn-grad-accent:       linear-gradient(180deg, hsl(var(--accent) / 0.98), hsl(var(--accent) / 0.84));
+  --btn-grad-accent-hover: linear-gradient(180deg, hsl(var(--accent)), hsl(var(--accent) / 0.92));
+}
+
+.dark {
+  --btn-stroke:      inset 0 0 0 1px hsl(0 0% 100% / 0.08);
+  --btn-highlight:   inset 0 1px 0 hsl(0 0% 100% / 0.10);
+  --btn-inner-shade: inset 0 -1px 0 hsl(0 0% 0% / 0.35);
+  --btn-shadow:      0 1px 2px hsl(0 0% 0% / 0.35), 0 8px 20px -8px hsl(0 0% 0% / 0.55);
+  --btn-shadow-hov:  0 2px 4px hsl(0 0% 0% / 0.40), 0 16px 32px -10px hsl(0 0% 0% / 0.65);
+}
+
+/* ---------- Núcleo: aplicado a TODO <button> com escapes ---------- */
+/* Escapes: data-no-premium, mascote octopus, slide-to-unlock, toasts/alerts,
+   FAB animado de assinatura, botão "Assinar plano", btn-assinar-pulse*,
+   water-btn (Entrar), .h-14.bg-primary (já tematizado por setor),
+   [data-sector-toggle="on"], [data-glow-keep], [data-panel-color-locked] children,
+   .animate-fab-color-cycle, .animate-pulse-red. */
+
+button:not([data-no-premium]):not([data-glow-keep]):not([data-octopus]):not([data-octopus] *):not([data-slot="slide-unlock"] *):not([data-sonner-toast] *):not([role="alertdialog"] *):not(.animate-fab-color-cycle):not([aria-label="Assinar plano"]):not(.btn-assinar-pulse):not(.btn-assinar-pulse-red):not(.btn-assinar-active):not(.water-btn):not(.h-14.bg-primary):not([data-sector-toggle="on"]):not([data-panel-color-locked] *) {
+  transition:
+    background-image 0.25s var(--btn-ease),
+    background-color 0.25s var(--btn-ease),
+    box-shadow 0.25s var(--btn-ease),
+    transform 0.25s var(--btn-ease),
+    filter 0.25s var(--btn-ease),
+    border-color 0.25s var(--btn-ease);
+}
+
+/* Default / primary tone — aplica gradient + sombra premium em botões com bg-primary */
+button.bg-primary:not([data-no-premium]):not([data-glow-keep]):not(.animate-fab-color-cycle):not([aria-label="Assinar plano"]):not(.h-14.bg-primary):not([data-sector-toggle="on"]):not([data-panel-color-locked] *) {
+  background-image: var(--btn-grad-primary);
+  box-shadow: var(--btn-stroke), var(--btn-highlight), var(--btn-inner-shade), var(--btn-shadow);
+}
+button.bg-primary:not([data-no-premium]):not([data-glow-keep]):not(.animate-fab-color-cycle):not([aria-label="Assinar plano"]):not(.h-14.bg-primary):not([data-sector-toggle="on"]):not([data-panel-color-locked] *):hover {
+  background-image: var(--btn-grad-primary-hover);
+  box-shadow: var(--btn-stroke), var(--btn-highlight), var(--btn-inner-shade), var(--btn-shadow-hov);
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+}
+
+/* Secondary tone */
+button.bg-secondary:not([data-no-premium]):not([data-glow-keep]):not([data-panel-color-locked] *) {
+  background-image: var(--btn-grad-secondary);
+  box-shadow: var(--btn-stroke), var(--btn-highlight), var(--btn-inner-shade), var(--btn-shadow);
+}
+button.bg-secondary:not([data-no-premium]):not([data-glow-keep]):not([data-panel-color-locked] *):hover {
+  background-image: var(--btn-grad-secondary-hover);
+  box-shadow: var(--btn-stroke), var(--btn-highlight), var(--btn-inner-shade), var(--btn-shadow-hov);
+  transform: translateY(-1px);
+}
+
+/* Destructive tone */
+button.bg-destructive:not([data-no-premium]):not([data-glow-keep]):not(.animate-pulse-red):not([data-panel-color-locked] *) {
+  background-image: var(--btn-grad-destructive);
+  box-shadow: var(--btn-stroke), var(--btn-highlight), var(--btn-inner-shade), var(--btn-shadow);
+}
+button.bg-destructive:not([data-no-premium]):not([data-glow-keep]):not(.animate-pulse-red):not([data-panel-color-locked] *):hover {
+  background-image: var(--btn-grad-destructive-hover);
+  box-shadow: var(--btn-stroke), var(--btn-highlight), var(--btn-inner-shade), var(--btn-shadow-hov);
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+}
+
+/* Accent tone */
+button.bg-accent:not([data-no-premium]):not([data-glow-keep]):not([data-panel-color-locked] *) {
+  background-image: var(--btn-grad-accent);
+  box-shadow: var(--btn-stroke), var(--btn-highlight), var(--btn-inner-shade), var(--btn-shadow);
+}
+button.bg-accent:not([data-no-premium]):not([data-glow-keep]):not([data-panel-color-locked] *):hover {
+  background-image: var(--btn-grad-accent-hover);
+  box-shadow: var(--btn-stroke), var(--btn-highlight), var(--btn-inner-shade), var(--btn-shadow-hov);
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+}
+
+/* Outline / ghost / link variants — sem gradiente, só refino sutil */
+button[class*="border-input"]:not([data-no-premium]):not([data-glow-keep]):not([data-panel-color-locked] *) {
+  box-shadow: var(--btn-stroke), 0 1px 2px hsl(220 40% 8% / 0.06);
+}
+button[class*="border-input"]:not([data-no-premium]):not([data-glow-keep]):not([data-panel-color-locked] *):hover {
+  box-shadow: var(--btn-stroke), 0 4px 12px -4px hsl(220 40% 8% / 0.18);
+  transform: translateY(-1px);
+}
+
+/* Press feedback — aplicado amplamente, sem mexer em layout */
+button:not([data-no-premium]):not([data-glow-keep]):not([data-octopus]):not([data-octopus] *):not([data-slot="slide-unlock"] *):not(.water-btn):active {
+  transform: translateY(0);
+  filter: brightness(0.97);
+}
+
+/* Ícones — leve elevação no hover, sem alterar tamanho */
+button:not([data-no-premium]):not([data-glow-keep]):not([data-octopus] *):not([data-slot="slide-unlock"] *) > svg {
+  transition: transform 0.25s var(--btn-ease), filter 0.25s var(--btn-ease);
+}
+button:not([data-no-premium]):not([data-glow-keep]):not([data-octopus] *):not([data-slot="slide-unlock"] *):hover > svg {
+  transform: translateY(-0.5px);
+}
+
+/* Modo "Padrão" (sem brilho) — desliga o tratamento premium para respeitar a preferência */
+html.glow-off button:not([data-no-premium]):not([data-glow-keep]):not(.bg-destructive):not(.animate-fab-color-cycle):not([aria-label="Assinar plano"]):not(.btn-assinar-pulse):not(.btn-assinar-pulse-red):not(.water-btn):not(.h-14.bg-primary):not([data-sector-toggle="on"]) {
+  background-image: none;
+  box-shadow: none;
+  transform: none;
+  filter: none;
+}
+html.glow-off button:not([data-no-premium]):not([data-glow-keep]):hover {
+  transform: none;
+  filter: none;
+}
+
+/* =========================================================================
+   Estado :disabled — consistência global.
+   shadcn já aplica opacity-50 + pointer-events-none. Aqui apenas neutralizamos
+   transform/filter/glow para que o botão fique visualmente "calmo" e idêntico
+   em todas as variantes, sem alterar tamanho/posicionamento.
+   ========================================================================= */
+button:disabled:not(.h-14.bg-primary):not([data-sector-toggle="on"]):not(.btn-assinar-pulse):not(.btn-assinar-pulse-red):not(.btn-assinar-active):not(.water-btn):not(.animate-fab-color-cycle):not([aria-label="Assinar plano"]):not([data-glow-keep]),
+button[aria-disabled="true"]:not(.h-14.bg-primary):not([data-sector-toggle="on"]):not(.btn-assinar-pulse):not(.btn-assinar-pulse-red):not(.btn-assinar-active):not(.water-btn):not(.animate-fab-color-cycle):not([aria-label="Assinar plano"]):not([data-glow-keep]),
+button[data-disabled]:not(.h-14.bg-primary):not([data-sector-toggle="on"]):not(.btn-assinar-pulse):not(.btn-assinar-pulse-red):not(.btn-assinar-active):not(.water-btn):not(.animate-fab-color-cycle):not([aria-label="Assinar plano"]):not([data-glow-keep]),
+button[data-state="disabled"]:not(.h-14.bg-primary):not([data-sector-toggle="on"]):not(.btn-assinar-pulse):not(.btn-assinar-pulse-red):not(.btn-assinar-active):not(.water-btn):not(.animate-fab-color-cycle):not([aria-label="Assinar plano"]):not([data-glow-keep]) {
+  transform: none !important;
+  filter: saturate(0.85) !important;
+  box-shadow: var(--btn-stroke), 0 1px 2px hsl(220 40% 8% / 0.10) !important;
+  cursor: not-allowed;
+}
+/* Botões temáticos disabled: só ajusta cursor/opacity (shadcn já aplica opacity-50) */
+button:disabled.h-14.bg-primary,
+button:disabled[data-sector-toggle="on"],
+button:disabled.btn-assinar-pulse,
+button:disabled.btn-assinar-pulse-red,
+button:disabled.water-btn,
+button:disabled.animate-fab-color-cycle,
+button:disabled[aria-label="Assinar plano"] {
+  cursor: not-allowed;
+}
+button:disabled > svg,
+button[aria-disabled="true"] > svg {
+  transform: none !important;
+  filter: none !important;
+}
+
+/* =========================================================================
+   Foco visível premium — anel via box-shadow (sem outline).
+   Estratégia única para todos os botões: um ring duplo desenhado por
+   box-shadow (anel interno na cor do fundo + anel externo na cor do tema).
+   Vantagens:
+   - não usa outline (acabamento mais clean, controlável por variável);
+   - não desloca layout (box-shadow não ocupa espaço);
+   - compõe com a sombra premium existente sem apagá-la;
+   - funciona em botões temáticos (setores, assinatura) com !important.
+   ========================================================================= */
+:root {
+  --btn-focus-ring:
+    0 0 0 2px hsl(var(--background)),
+    0 0 0 4px hsl(var(--ring) / 0.75);
+}
+.dark {
+  --btn-focus-ring:
+    0 0 0 2px hsl(var(--background)),
+    0 0 0 4px hsl(var(--ring) / 0.85);
+}
+
+/* Remove qualquer outline em foco — o anel passa a ser exclusivamente o ring. */
+button:focus-visible {
+  outline: none;
+}
+
+/* Botões padrão (sem variante temática): ring + sombra premium preservada. */
+button:focus-visible:not([data-no-premium]):not(.h-14.bg-primary):not([data-sector-toggle="on"]):not(.btn-assinar-pulse):not(.btn-assinar-pulse-red):not(.btn-assinar-active):not(.water-btn):not(.animate-fab-color-cycle):not([aria-label="Assinar plano"]):not([data-glow-keep]) {
+  box-shadow:
+    var(--btn-stroke, 0 0 #0000),
+    var(--btn-highlight, 0 0 #0000),
+    var(--btn-inner-shade, 0 0 #0000),
+    var(--btn-shadow, 0 0 #0000),
+    var(--btn-focus-ring);
+}
+
+/* Setores (botões h-14 do fluxo de agendamento) — preserva o glow temático. */
+button.h-14.bg-primary:focus-visible:not([data-glow-keep]):not([data-panel-color-locked] *) {
+  box-shadow: var(--sector-glow), var(--btn-focus-ring) !important;
+}
+html.glow-off button.h-14.bg-primary:focus-visible:not([data-glow-keep]):not([data-panel-color-locked] *) {
+  box-shadow: var(--btn-focus-ring) !important;
+}
+
+/* Toggles temáticos (Avulso/Padrão, turnos, slots de horário) */
+button[data-sector-toggle="on"]:focus-visible {
+  box-shadow: var(--sector-glow), var(--btn-focus-ring) !important;
+}
+html.glow-off button[data-sector-toggle="on"]:focus-visible {
+  box-shadow: var(--btn-focus-ring) !important;
+}
+
+/* Botões de assinatura (Assinar / Assinar plano / FAB animado) */
+button.btn-assinar-pulse:focus-visible,
+button.btn-assinar-pulse-red:focus-visible,
+button.btn-assinar-active:focus-visible,
+button.animate-fab-color-cycle:focus-visible,
+button[aria-label="Assinar plano"]:focus-visible {
+  box-shadow:
+    inset 0 0 6px hsla(45, 100%, 70%, 0.5),
+    var(--btn-focus-ring) !important;
+}
+
+/* Botão "Entrar" (water-btn) — preserva sombra de água + ring */
+button.water-btn:focus-visible {
+  box-shadow:
+    inset 0 1px 1px hsla(0, 0%, 100%, 0.6),
+    inset 0 -8px 16px hsla(220, 90%, 30%, 0.35),
+    inset 0 0 24px hsla(195, 100%, 85%, 0.25),
+    0 8px 24px hsla(210, 90%, 25%, 0.45),
+    var(--btn-focus-ring);
+}

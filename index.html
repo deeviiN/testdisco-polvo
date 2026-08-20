@@ -29,13 +29,27 @@
         }
       })();
     </script>
+    <script>
+      // Aplica a preferência de visualização (computador/compacta) antes do
+      // primeiro paint, evitando flash de layout ao recarregar a página.
+      (function () {
+        try {
+          var isWide = window.matchMedia("(min-width: 1024px)").matches;
+          var stored = localStorage.getItem("polvo:view-preference");
+          var mode = isWide ? (stored === "compact" ? "compact" : "wide") : "compact";
+          document.documentElement.dataset.viewMode = mode;
+        } catch (e) {
+          document.documentElement.dataset.viewMode = "compact";
+        }
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
     <meta name="theme-color" content="#1a8a5c" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Agendamento Escolar" />
-    <title>Fique Rico com A Mega Sena</title>
-    <meta name="description" content="Agendamento de Ambiente Escolar para escolas">
+    <meta name="apple-mobile-web-app-title" content="AgenSchool" />
+    <title>AgenSchool — Agendamento de Ambientes Escolares</title>
+    <meta name="description" content="AgenSchool: agendamento de ambientes escolares para escolas.">
 
     
     
@@ -62,6 +76,13 @@
       }
       #splash.hide { opacity: 0; pointer-events: none; }
       #splash .logo { display: none; }
+      #splash .mascot {
+        width: 180px; height: 180px;
+        object-fit: contain;
+        margin-bottom: 16px;
+        background: transparent;
+      }
+
       #splash .name {
         font-size: 22px;
         font-weight: 700;
@@ -124,12 +145,17 @@
 
   <body>
     <div id="splash">
-      <div class="logo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      </div>
+      <video
+        class="mascot"
+        src="/__l5e/assets-v1/2421dd84-767e-4ada-bc2e-72cc4abfc4f3/octopus-mascote.mp4"
+        poster="/__l5e/assets-v1/42386860-eecf-402b-9740-7c6372de5a68/octopus-multitask.png"
+        autoplay loop muted playsinline preload="auto"
+        disablepictureinpicture
+      ></video>
       <div class="name">Agendamento Escolar</div>
       <div class="bar"></div>
     </div>
+
     <div id="root"></div>
     <script>
       // Reload once when a new service worker takes control

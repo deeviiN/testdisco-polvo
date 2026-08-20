@@ -1,0 +1,1 @@
+UPDATE public.bookings SET event_type = 'evento_externo' WHERE event_type = 'externo';

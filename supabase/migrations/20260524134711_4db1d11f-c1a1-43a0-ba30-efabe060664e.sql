@@ -1,0 +1,1 @@
+REVOKE EXECUTE ON FUNCTION public.notify_external_event_decision() FROM PUBLIC, anon, authenticated;

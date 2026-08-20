@@ -1,0 +1,1 @@
+ALTER TABLE public.bookings REPLICA IDENTITY FULL;

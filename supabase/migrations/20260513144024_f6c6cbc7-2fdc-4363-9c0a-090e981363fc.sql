@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "Admins and chef can list school-logos" ON storage.objects;

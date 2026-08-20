@@ -1,0 +1,1 @@
+ALTER TABLE public.schools ADD COLUMN network text NOT NULL DEFAULT 'estadual';

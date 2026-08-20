@@ -1,0 +1,2 @@
+ALTER TABLE public.bookings DROP CONSTRAINT IF EXISTS bookings_user_id_fkey;
+ALTER TABLE public.bookings ADD CONSTRAINT bookings_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE;

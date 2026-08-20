@@ -1,0 +1,2 @@
+REVOKE ALL ON FUNCTION public.notify_school_gestores_communique(uuid, text, text, uuid, text) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.notify_school_gestores_communique(uuid, text, text, uuid, text) TO authenticated;

@@ -1,0 +1,1 @@
+ALTER TABLE public.teacher_roster ADD COLUMN IF NOT EXISTS nickname text;

@@ -1,0 +1,1 @@
+REVOKE EXECUTE ON FUNCTION public.request_contract_signing(text) FROM PUBLIC, anon;

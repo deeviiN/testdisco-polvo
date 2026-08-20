@@ -1,0 +1,1 @@
+UPDATE public.mp_settings SET force_test_mode = false, updated_at = now() WHERE id = true;

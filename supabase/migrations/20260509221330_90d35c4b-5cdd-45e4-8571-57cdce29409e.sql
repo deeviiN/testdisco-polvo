@@ -1,0 +1,2 @@
+DELETE FROM notifications WHERE id='4e0c5eb5-4885-4556-9f6b-e02992c6a8c4';
+DELETE FROM signed_contracts WHERE id='c9134070-345d-493e-8256-83f84ca89421';
